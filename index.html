@@ -1,0 +1,71 @@
+<html>
+<head>
+<script> 
+	var dizi = [
+	"https://webupload.gazi.edu.tr/upload/1041/2024/9/22/3c22a06a-d872-492e-b1c7-56c97223c4aa-bt_oryantasyon_2024.png",
+	"https://webupload.gazi.edu.tr/upload/1041/2023/12/28/869e6826-b1b2-4e9c-b501-6893ae45ffbe-programlama4.jpg",
+	"https://webupload.gazi.edu.tr/upload/1041/2023/12/28/42b48c3b-634f-40e5-af8d-610d4b1b61d4-veritabani2.jpg",
+	"https://webupload.gazi.edu.tr/upload/1041/2023/12/28/7cc492b9-e36a-4743-9fb6-9c71e6f49898-programlama1.jpg"
+	];
+	
+	function baslangic(){
+	document.getElementById("img").setAttribute("src",dizi[0]);
+	}
+	
+	function ileri(){
+		if(document.getElementById("img").getAttribute("src") == dizi[dizi.length - 1] ){
+			document.getElementById("img").setAttribute("src",dizi[0]);
+			return;
+		}
+		else{
+			for(var i = 0 ; i < dizi.length; i++){
+				if(document.getElementById("img").getAttribute("src") == dizi[i]){
+					document.getElementById("img").setAttribute("src",dizi[i+1]);
+					return;
+				}
+			}
+		}
+	}
+	
+	function geri(){
+		if(document.getElementById("img").getAttribute("src") == dizi[0] ){
+			document.getElementById("img").setAttribute("src",dizi[dizi.length -1]);
+			return;
+		}
+		else{
+			for(var i = 0 ; i < dizi.length; i++){
+				if(document.getElementById("img").getAttribute("src") == dizi[i]){
+					document.getElementById("img").setAttribute("src",dizi[i-1]);
+					return;
+				}
+			}
+		}
+	}
+	
+	
+	function aralikliCalis(){
+		
+		alert("Bu Metod 2000 ms sonra çalışmıştır.")
+	}
+	
+	
+
+</script>
+</head>
+
+
+
+<body onload = "baslangic()">
+
+	<img id="img" src=""/>
+	
+	<input type="button" value ="ileri" onclick = "ileri()"/>
+	<input type="button" value = "geri" onclick = "geri()"/>
+	
+	<input type="button" onclick="setInterval(aralikliCalis,2000)" value="2000 ms aralıklı calistir"></input>
+	
+</body>
+
+</html>
+
+

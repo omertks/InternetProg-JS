@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <style>
+
+    </style>
+
+</head>
+
+<body id="body">
+    <div style="background-color: antiquewhite; margin-bottom: 20px;">
+        <form>
+            <input type="number" id="s1">
+            <select id="seciliIslem">
+                <option value="+" selected>+</option>
+                <option value="-">-</option>
+                <option value="/">/</option>
+                <option value="*">*</option>
+            </select>
+            <input type="number" id="s2">
+            <label id="sonuc">0</label>
+            <input type="button" value="Hesapla" onclick="Hesapla()">
+        </form>
+    </div>
+    <div style="background-color: rgb(35, 163, 56);margin-bottom: 20px;">
+        <label>X: </label><input type="number" id="isinlaX" value="300">
+        <label>Y: </label><input type="number" id="isinlaY" value="300">
+
+        <div style="background-color: aqua;width: 100px;height: 100px;" id="div1" onclick="Isinla(this)"></div>
+        <div style="background-color: red;width: 100px;height: 100px;" id="div2" onclick="Isinla(this)"></div>
+    </div>
+
+    <div style="background-color: blue;margin-bottom: 20px;">
+        <input type="color" id="renkSecim" onchange="RenkDegis()">
+        <div style="width: 50px;height: 50px; background-color: black;" id="renkDegisDiv"></div>
+    </div>
+
+    <div style="background-color: rgb(21, 180, 47);margin-bottom: 20px;">
+        <img id="resim"
+            src="https://webupload.gazi.edu.tr/upload/1041/2024/9/22/3c22a06a-d872-492e-b1c7-56c97223c4aa-bt_oryantasyon_2024.png"
+            width="1000px">
+        <input type="range" id="resimBoyut" value="100" onchange="boyutDegistir()">
+    </div>
+
+
+    <div style="background-color: rgb(180, 21, 114);margin-bottom: 20px;">
+        <input type="button" onclick="sayfaRenkDegis()" value="Değiş">
+    </div>
+
+    <div style="background-color: rgb(165, 207, 14);margin-bottom: 20px;">
+        <form action="login.jsp" method="get">
+            <input type="submit" value="XMLHTTP Request Gönder">
+        </form>
+        <button type="button" onclick="IstekGonder()">İstek Gönder</button>
+    </div>
+
+
+    
+</body>
+
+</html>
+
+
+<script>
+    function Hesapla() {
+        var s1 = document.getElementById("s1").value;
+        var s2 = document.getElementById("s2").value;
+        var islemSecim = document.getElementById("seciliIslem").value;
+        var sonuc = eval(s1 + islemSecim + s2);
+        document.getElementById("sonuc").innerHTML = sonuc;
+    }
+
+    function Isinla(a) {
+        var x = document.getElementById("isinlaX").value;
+        var y = document.getElementById("isinlaY").value;
+        var arkaPlanRenk = "red";
+        if (a.id == "div1") {
+            arkaPlanRenk = "aqua";
+        }
+        var sty = "width:100px;height:100px;top:" + y + "px;left:" + x + "px;position:absolute; background-color:" + arkaPlanRenk;
+        // document.getElementById(a.id).setAttribute("style", sty)
+        a.setAttribute("style", sty);
+    }
+
+    function RenkDegis() {
+        var secilenRenk = document.getElementById("renkSecim").value;
+        // alert(secilenRenk)
+        document.getElementById("renkDegisDiv").setAttribute("style", "width: 50px;height: 50px; background-color:" + secilenRenk);
+    }
+
+    function boyutDegistir() {
+        var oran = document.getElementById("resimBoyut").value;
+        document.getElementById("resim").setAttribute("width", oran * 10);
+    }
+
+    function sayfaRenkDegis() {
+        var r = Math.floor(Math.random() * (255 - 0) + 0);
+        var g = Math.floor(Math.random() * (255 - 0) + 0);
+        var b = Math.floor(Math.random() * (255 - 0) + 0);
+        document.getElementById("body").setAttribute("style", "background-color: rgb(" + r + "," + g + "," + b + ")")
+    }
+
+    function IstekGonder() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "login.jsp");
+        xhttp.send();
+    }
+
+
+    
+</script>

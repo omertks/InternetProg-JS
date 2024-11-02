@@ -1,0 +1,33 @@
+<html>
+
+<head>
+<script>
+	var sol = 0;
+	var ust = 0;
+	function hareket(a){
+		if(a.value == "Yukari"){
+			ust = ust-10;
+		}
+		if(a.value == "Asagi"){
+			ust = ust+10;
+		}
+		if(a.value == "Saga"){
+			sol = sol+10;
+		}
+		if(a.value == "Sola"){
+			sol = sol-10;
+		}
+		var sty = "width:100px;height:100px;background-color:red;top:"+ust+"px;left:"+sol+"px;position:absolute;";
+		document.getElementById("hareketdiv").setAttribute("style", sty)
+	}
+</script>
+</head>
+<body id="bdy" onerror = "hata()">
+<div id="hareketdiv" style="width:100px;height:100px;background-color:red;top:0px;left:0px;position:absolute;"></div>
+		
+	<input type = "button" value="Yukari" onclick = "hareket(this)"/>
+	<input type = "button" value="Asagi" onclick = "hareket(this)"/>
+	<input type = "button" value="Saga" onclick = "hareket(this)"/>
+	<input type = "button" value="Sola" onclick = "hareket(this)"/>
+</body>
+</html>

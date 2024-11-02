@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calisma</title>
+
+    <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <script>
+        function ogrencileriGetir() {
+            var text = '{"ogrenciler": [' +
+                '{"ad":"Ömer","soyad":"Tekeş","dersler":["Matematik","Türkçe"]},'+ 
+                '{"ad":"Emre","soyad":"Ateş","dersler":["Programlama Temelleri","Nesne Tabanlı Programlama","Göresel Prog."]}'+
+            ']}';
+
+            var obj = JSON.parse(text);
+
+            for (let index = 0; index < obj.ogrenciler.length; index++) {
+                var ogrenciText = (index +1) +"-)"+obj.ogrenciler[index].ad+" "+obj.ogrenciler[index].soyad+" Dersler: ";
+                for (let index2 = 0; index2 < obj.ogrenciler[index].dersler.length; index2++) {
+                    ogrenciText = ogrenciText+obj.ogrenciler[index].dersler[index2] + " ";
+                    
+                }
+                alert(ogrenciText);
+
+            }
+        }
+
+    </script>
+
+    <input type="button" onclick = "ogrencileriGetir();" value="Öğrencileri Getir">
+</body>
+
+</html>

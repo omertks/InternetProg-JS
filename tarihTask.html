@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deneme</title>
+</head>
+
+<body>
+    <div>
+        <input type="date" id="date" onclick="sinirla()" onchange="TarihHesapla()" min="10-10-2024">
+        <p>Cuma Günü 18:00 dan 19:00'da bitirdim.</p>
+    </div>
+</body>
+
+</html>
+<script>
+    function sinirla() { // Bu kısım neden çalışmıyor.
+        var bugunTarih = new Date();
+        document.getElementById("date").setAttribute("min", bugunTarih.getFullYear + "-" + bugunTarih.getMonth + "-" + bugunTarih.getDate)
+    }
+
+    function TarihHesapla() {
+        var aylarinGunleri = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        var bugunTarih = new Date();
+
+        var bugunGun = bugunTarih.getDate();
+        var bugunAy = bugunTarih.getMonth() + 1; // BU 0 ile 11 arasında bir değer döner. Doğru ayı almak için bir arttırmak gerekir.
+        var bugunYil = bugunTarih.getFullYear();
+        //alert('Bugün Yıl : ' + bugunYil + ' Ay: ' + bugunAy + ' Gün: ' + bugunGun);
+
+        var seciliTarih = document.getElementById("date").value;
+
+        var seciliYil = Number(seciliTarih[0] + seciliTarih[1] + seciliTarih[2] + seciliTarih[3]);
+        var seciliAy = Number(seciliTarih[5] + seciliTarih[6]);
+        var seciliGun = Number(seciliTarih[8] + seciliTarih[9]);
+        //alert('Secili Yıl : ' + seciliYil + ' Ay: ' + seciliAy + ' Gün: ' + seciliGun);
+
+
+        var result = 0;
+
+        while (seciliYil > bugunYil) {
+            while (bugunAy <= 12) {
+                result = result + Number(aylarinGunleri[bugunAy - 1]); // 0 dan başlar
+                bugunAy = bugunAy + 1;
+            }
+            seciliYil = seciliYil - 1;
+            bugunAy = 1; // ocak ayına sıfırlıyoruz.
+        }
+        // Buradan Aşşağısı doğru çalışıyor.
+
+
+
+        if (seciliAy == bugunAy) { // aynı yıl ve ay içerisinde
+            result = result + seciliGun - bugunGun;
+        }
+        else { // aynı yıl farklı ay
+            result = Number(aylarinGunleri[bugunAy - 1]) - bugunGun; // ilk aydaki kalanları attım
+            while ((seciliAy - 1) > bugunAy) {
+                result = result + Number(aylarinGunleri[seciliAy - 2]); // son aya gelene kadar atıyoruz
+                seciliAy = 1 - seciliAy;
+            }
+            result = result + seciliGun; // son aydaki kalan günleri atıyoruz
+        }
+
+        alert("Kalan Gün: " + result);
+
+
+
+
+    }
+
+</script>
